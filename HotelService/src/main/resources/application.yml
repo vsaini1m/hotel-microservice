@@ -1,0 +1,28 @@
+
+server:
+ port: 8091
+spring:
+  
+  #database confighanu
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3306/microservice?&serverTimezone=UTC&createDatabaseIfNotExist=true
+    username: root
+  
+  #hibernate config
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+
+#logging
+logging:
+  level:
+    root: INFO
+  file:
+    name: /home/vsaini/Desktop/logs/api.log
+    
