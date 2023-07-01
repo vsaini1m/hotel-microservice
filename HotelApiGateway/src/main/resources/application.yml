@@ -1,0 +1,35 @@
+server:
+  port: 8092
+  
+spring:
+  application:
+    name: APIGATEWAY
+    
+#cloud config for api gateway    
+  cloud:
+    gateway:
+      routes:
+      - id: USERS
+        uri: lb://USERS
+        predicates:
+        - Path=/users/**
+        
+      - id: HOTELS
+        uri: lb://HOTELS
+        predicates:
+        - Path=/hotels/**
+        
+      - id: RATINGS
+        uri: lb://RATINGS
+        predicates:
+        - Path=/ratings/**
+        
+#eureka clint config
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

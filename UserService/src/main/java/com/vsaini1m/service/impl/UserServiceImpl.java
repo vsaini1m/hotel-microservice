@@ -1,16 +1,15 @@
 package com.vsaini1m.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.vsaini1m.entity.Rating;
 import com.vsaini1m.entity.User;
 import com.vsaini1m.exception.ResourceNotFoundException;
 import com.vsaini1m.repositery.UserRepositery;
 import com.vsaini1m.service.UserService;
+import com.vsaini1m.service.external.RatingService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +21,7 @@ public class UserServiceImpl implements UserService{
 
 	private final UserRepositery userRepositery;
 	private final RestTemplate restTemplate;
+	private final RatingService ratingService;
 	
 	@Override
 	public User saveUser(User user) {
@@ -42,10 +42,8 @@ public class UserServiceImpl implements UserService{
 	public User getUserById(String userID) {
 		User user = this.userRepositery.findById(userID)
 				.orElseThrow(() -> new ResourceNotFoundException("User with given if not found !! : "+ userID));
-		String url = "http://RATINGS/ratings/user/" + user.getId();
-		ArrayList<Rating> ratings = this.restTemplate.getForObject(url, ArrayList.class);
-		log.info("{}", ratings);
-		user.setRatings(ratings);
+//		String url = "http://RATINGS/ratings/user/" + user.getId();
+		user.setRatings(this.ratingService.getRatingsByUserId(userID));
 
 		return user;
 	}
