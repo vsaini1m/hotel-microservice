@@ -1,19 +1,20 @@
 package com.vsaini1m.entity;
 
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter@Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Rating {
+public class Hotel {
 
+	@Id
 	private String id;
-	private String userId;
-	private String hotelId;
-	private String rating;
-	private String feedback;
-	private Hotel hotel;
+	private String name;
+	private String location;
+	private String about;
 }

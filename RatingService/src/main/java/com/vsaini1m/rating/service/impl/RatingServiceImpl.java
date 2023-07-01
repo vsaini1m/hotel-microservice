@@ -5,9 +5,12 @@ package com.vsaini1m.rating.service.impl;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.vsaini1m.rating.dto.Hotel;
 import com.vsaini1m.rating.entity.Rating;
 import com.vsaini1m.rating.exception.ResourceNotFoundException;
 import com.vsaini1m.rating.repositery.RatingRepositery;
@@ -24,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class RatingServiceImpl implements RatingService {
 
 	private final RatingRepositery ratingRepositery;
+	private final RestTemplate restTemplate;
 	
 	@Override
 	public Rating create(Rating rating) {
@@ -54,7 +58,12 @@ public class RatingServiceImpl implements RatingService {
 
 	@Override
 	public List<Rating> getAllByUserId(String id) {
-		return this.ratingRepositery.findAllByUserId(id);
+		return this.ratingRepositery.findAllByUserId(id).stream().map(rating -> {
+			String url = "http://127.0.0.1:8090/hotels/" + rating.getHotelId();
+			Hotel hotel = this.restTemplate.getForObject(url, Hotel.class);
+			rating.setHotel(hotel);
+			return rating;
+		}).collect(Collectors.toList());
 	}
 
 	@Override

@@ -1,7 +1,10 @@
 package com.vsaini1m.rating.entity;
 
+import com.vsaini1m.rating.dto.Hotel;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +22,6 @@ public class Rating {
 	private String hotelId;
 	private String rating;
 	private String feedback;
+	@Transient
+	private Hotel hotel;
 }
