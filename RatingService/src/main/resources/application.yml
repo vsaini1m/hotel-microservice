@@ -1,7 +1,8 @@
 server:
  port: 8091
 spring:
-  
+  application:
+    name: RATING_SERVICE
   #database confighanu
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -17,7 +18,16 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
 
-
+#eureka clint config
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+      
 #logging
 logging:
   level:
