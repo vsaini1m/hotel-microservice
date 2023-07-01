@@ -59,7 +59,7 @@ public class RatingServiceImpl implements RatingService {
 	@Override
 	public List<Rating> getAllByUserId(String id) {
 		return this.ratingRepositery.findAllByUserId(id).stream().map(rating -> {
-			String url = "http://127.0.0.1:8090/hotels/" + rating.getHotelId();
+			String url = "http://HOTELS/hotels/" + rating.getHotelId();
 			Hotel hotel = this.restTemplate.getForObject(url, Hotel.class);
 			rating.setHotel(hotel);
 			return rating;

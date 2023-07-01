@@ -2,7 +2,7 @@ server:
  port: 8091
 spring:
   application:
-    name: RATING_SERVICE
+    name: RATINGS
   #database confighanu
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

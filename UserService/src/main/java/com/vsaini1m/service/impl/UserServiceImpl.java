@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService{
 	public User getUserById(String userID) {
 		User user = this.userRepositery.findById(userID)
 				.orElseThrow(() -> new ResourceNotFoundException("User with given if not found !! : "+ userID));
-		String url = "http://127.0.0.1:8091/ratings/user/" + user.getId();
+		String url = "http://RATINGS/ratings/user/" + user.getId();
 		ArrayList<Rating> ratings = this.restTemplate.getForObject(url, ArrayList.class);
 		log.info("{}", ratings);
 		user.setRatings(ratings);

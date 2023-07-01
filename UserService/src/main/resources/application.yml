@@ -2,7 +2,7 @@ server:
  port: 8089
 spring:
   application:
-    name: USER_SERVICE
+    name: USERS
   #database confighanu
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
