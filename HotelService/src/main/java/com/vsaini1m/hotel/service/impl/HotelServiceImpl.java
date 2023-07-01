@@ -6,9 +6,9 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.vsaini1m.hotel.entity.Hotel;
+import com.vsaini1m.hotel.exception.ResourceNotFoundException;
 import com.vsaini1m.hotel.repositery.HotelRepositery;
 import com.vsaini1m.hotel.service.HotelService;
-import com.vsaini1m.hotel.service.exception.ResourceNotFoundException;
 
 import lombok.RequiredArgsConstructor;
 

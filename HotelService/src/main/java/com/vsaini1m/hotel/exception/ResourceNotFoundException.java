@@ -1,4 +1,4 @@
-package com.vsaini1m.hotel.service.exception;
+package com.vsaini1m.hotel.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 

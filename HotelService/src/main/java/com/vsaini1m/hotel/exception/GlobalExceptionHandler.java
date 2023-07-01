@@ -1,4 +1,4 @@
-package com.vsaini1m.hotel.service.exception;
+package com.vsaini1m.hotel.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
