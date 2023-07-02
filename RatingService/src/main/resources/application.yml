@@ -26,4 +26,4 @@ logging:
   level:
     root: INFO
   file:
-    name: /home/vsaini/Desktop/logs/api.log
+    name: /home/vinit/Desktop/logs/api.log

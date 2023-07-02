@@ -49,7 +49,14 @@ resilience4j:
         permitted-number-of-calls-in-half-open-state: 3
         sliding-window-size: 10
         sliding-window-type: count-based
-        
+  
+  # this is for retry config
+  retry:
+    instances:
+      ratingService:
+        max-attempts: 3
+        wait-duration: 5s
+            
 #logging
 logging:
   level:
