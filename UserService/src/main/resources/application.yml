@@ -1,5 +1,5 @@
 server:
- port: 8089
+ port: 8084
 spring:
   application:
     name: USERS
@@ -17,16 +17,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-
-#eureka clint config
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+  config:
+    import: "optional:configserver:http://localhost:8093"
 
 #logging
 logging:

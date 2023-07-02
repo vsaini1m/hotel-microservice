@@ -1,5 +1,5 @@
 server:
-  port: 8092
+  port: 8091
   
 spring:
   application:
@@ -25,11 +25,5 @@ spring:
         - Path=/ratings/**
         
 #eureka clint config
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+  config:
+    import: "optional:configserver:http://localhost:8093"
