@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vsaini1m.entity.User;
 import com.vsaini1m.service.UserService;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
 
 	private final UserService service;
@@ -42,12 +45,24 @@ public class UserController {
 	}
 	
 	@GetMapping("/{userId}")
+	@CircuitBreaker(name = "ratingBreaker", fallbackMethod = "ratingBreaker")
 	public ResponseEntity<?> getById(@PathVariable("userId") String userId){
 		User user = this.service.getUserById(userId);
 		
 		return ResponseEntity.ok(user);
 	}
 	
+	// @GetMapping("/{userId}")
+	// @CircuitBreaker(name = "ratingBreaker", fallbackMethod = "ratingBreaker")
+	public ResponseEntity<?> ratingBreaker(@PathVariable("userId") String userId, Exception exception) {
+
+		log.info("Fallback is executed because service is down : " + exception.getMessage());
+		User user = new User();
+		user.setEmail("dummy@gmail.com");
+
+		return ResponseEntity.ok(user);
+	}
+
 	@DeleteMapping("/{userId}")
 	public ResponseEntity<?> deleteById(@PathVariable("userId") String userId){
 		this.service.deleteUserById(userId);
