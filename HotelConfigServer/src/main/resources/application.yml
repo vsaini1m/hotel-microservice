@@ -1,0 +1,14 @@
+server:
+  port: 8093
+ 
+spring:
+  application:
+    name: CONFIGSERVER
+
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/vsaini1m/hotel-microservice
+          clone-on-start: true
